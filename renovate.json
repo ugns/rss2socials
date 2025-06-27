@@ -17,7 +17,6 @@
         "optional-dependencies"
       ],
       "matchManagers": ["pep621"],
-      "matchUpdateTypes": ["minor", "patch"],
       "automerge": true,
       "schedule": ["every weekend after 4am"],
       "allowedVersions": ">=3.9",
