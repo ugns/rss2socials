@@ -7,7 +7,6 @@
     "main"
   ],
   "rebaseWhen": "conflicted",
-  "autodiscover": true,
   "dependencyDashboard": true,
   "prConcurrentLimit": 5,
   "packageRules": [
@@ -37,5 +36,5 @@
       "labels": ["dependencies", "github-actions"]
     }
   ],
-  "prTitle": "chore(deps): update {{depName}} to {{newVersion}}"
+  "commitMessage": "chore(deps): update {{depName}} to {{newVersion}}"
 }
