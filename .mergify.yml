@@ -1,5 +1,6 @@
 queue_rules:
   - name: default
+    batch_size: 5
 
 pull_request_rules:
   - name: Queue Renovate PRs
