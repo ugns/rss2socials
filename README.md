@@ -20,15 +20,26 @@
 
 ## Installation
 
+### From PyPI
+
 ```sh
 pip install rss2socials
 ```
-Or clone the repo and install dependencies:
+
+### From Source (Recommended for Development)
+
+Clone the repository and install all dependencies (main + dev) using pip-tools and a pinned requirements file for reproducibility:
+
 ```sh
 git clone https://github.com/ugns/rss2socials.git
 cd rss2socials
+pip install pip-tools
+pip-compile --extra dev --strip-extras --output-file=requirements.txt pyproject.toml
 pip install -r requirements.txt
 ```
+
+- This will install the package in editable mode along with all development tools (pytest, flake8, etc.).
+- You can also use `make dev` to automate these steps.
 
 ## Requirements
 
@@ -36,8 +47,34 @@ pip install -r requirements.txt
 
 ## Usage
 
+### Using the CLI Entrypoint
+
+After installation, you can use the CLI entrypoint (if installed from PyPI or with pip):
+
+```sh
+rss2socials --feed-url https://example.com/feed.xml --platform bluesky
+```
+
+Or, if you prefer to use the Python module directly:
+
 ```sh
 python -m rss2socials --feed-url https://example.com/feed.xml --platform bluesky
+```
+
+Both commands are equivalent and will invoke the CLI interface.
+
+### As a Library
+
+You can also use `rss2socials` as a Python library in your own scripts:
+
+```python
+from rss2socials.cli import main
+
+# Call main() with sys.argv-style arguments
+main([
+    "--feed-url", "https://example.com/feed.xml",
+    "--platform", "bluesky"
+])
 ```
 
 ### CLI Options
@@ -76,10 +113,13 @@ def post(summary, link, fetch_page_metadata):
   - Other connectors may require their own environment variables; see the connector's documentation or source code for details.
 
 ## Development & Testing
-- Run tests: `make test`
+
+- Install all dependencies: `make dev`
+- Run tests: `make test` (uses tox for all supported Python versions)
 - Lint: `make lint`
 - Coverage: `make coverage`
 - Add new connectors in `src/rss2socials/connector/`
+- Regenerate constraints after dependency changes: `make freeze`
 
 ## License
 MIT

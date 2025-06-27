@@ -3,29 +3,31 @@
 help:
 	@echo "Available targets:"
 	@echo "  install     Install in editable mode"
-	@echo "  dev         Install dev dependencies with constraints"
-	@echo "  test        Run pytest"
-	@echo "  lint        Run flake8 lint checks"
-	@echo "  coverage    Run tests with coverage"
+	@echo "  dev         Install dev dependencies with pinned requirements"
+	@echo "  test        Run tox test suite"
+	@echo "  lint        Run tox lint checks"
+	@echo "  coverage    Run tox coverage environment"
 	@echo "  build       Build package distributions"
 	@echo "  publish     Upload to PyPI via Twine"
 	@echo "  clean       Remove build/test artifacts"
-	@echo "  freeze      Update constraints.txt with current versions"
+	@echo "  freeze      Update requirements.txt with current versions"
 
 install:
 	pip install -e .
 
 dev:
-	pip install -r requirements-dev.txt -c constraints.txt
+	pip install pip-tools
+	pip-compile --extra dev --strip-extras --output-file=requirements.txt pyproject.toml
+	pip install -r requirements.txt
 
 test:
-	pytest
+	tox
 
 lint:
-	flake8 src tests
+	tox -e lint
 
 coverage:
-	coverage run -m pytest && coverage report -m && coverage html
+	tox -e coverage
 
 build:
 	python -m build
@@ -37,4 +39,4 @@ clean:
 	rm -rf dist build **/*.egg-info .pytest_cache .coverage htmlcov
 
 freeze:
-	pip freeze | grep -Ff requirements-dev.txt > constraints.txt
+	pip-compile --extra dev --strip-extras --output-file=requirements.txt pyproject.toml
