@@ -30,6 +30,10 @@ cd rss2socials
 pip install -r requirements.txt
 ```
 
+## Requirements
+
+- **Python 3.9 or newer is required.**
+
 ## Usage
 
 ```sh
