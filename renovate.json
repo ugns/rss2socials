@@ -3,15 +3,40 @@
   "extends": [
     "config:recommended"
   ],
+  "baseBranches": [
+    "main"
+  ],
+  "rebaseWhen": "conflicted",
+  "autodiscover": true,
+  "dependencyDashboard": true,
+  "prConcurrentLimit": 5,
   "packageRules": [
     {
-      "matchManagers": [
-        "gomod"
-      ],
       "matchDepTypes": [
-        "indirect"
+        "dependencies",
+        "optional-dependencies"
       ],
-      "enabled": true
+      "matchManagers": ["pep621"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "schedule": ["every weekend after 4am"],
+      "allowedVersions": ">=3.9",
+      "groupName": "all python dependencies",
+      "labels": ["dependencies", "python"]
+    },
+    {
+      "matchDepTypes": ["dev-dependencies"],
+      "matchManagers": ["pep621"],
+      "automerge": false,
+      "groupName": "all python dev dependencies",
+      "labels": ["dependencies", "python", "dev"]
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["major"],
+      "automerge": true,
+      "labels": ["dependencies", "github-actions"]
     }
-  ]
+  ],
+  "prTitle": "chore(deps): update {{depName}} to {{newVersion}}"
 }
