@@ -1,0 +1,17 @@
+atproto
+build
+coverage
+feedparser
+flake8
+grapheme
+importlib_metadata
+lxml
+lxml_html_clean
+openai
+pytest
+python-dotenv
+python-semantic-release
+requests
+tox
+trafilatura
+twine
