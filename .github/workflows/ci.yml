@@ -121,7 +121,7 @@ jobs:
       - name: Install all dependencies (main + dev, pinned)
         run: pip install -r requirements.txt
       - name: Semantic Release
-        uses: python-semantic-release/python-semantic-release@v9
+        uses: python-semantic-release/python-semantic-release@v10
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           git_committer_name: "github-actions"
