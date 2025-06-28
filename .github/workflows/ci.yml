@@ -101,3 +101,28 @@ jobs:
           files: pytest-results.xml
           flags: py3x
           token: ${{ secrets.CODECOV_TOKEN }}
+
+  release:
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+    needs: [test, lint, coverage]
+    if: github.ref_type == 'branch' && github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Install pip-tools
+        run: pip install pip-tools
+      - name: Generate requirements.txt (main + dev)
+        run: pip-compile --extra dev --strip-extras --output-file=requirements.txt pyproject.toml
+      - name: Install all dependencies (main + dev, pinned)
+        run: pip install -r requirements.txt
+      - name: Semantic Release
+        uses: python-semantic-release/python-semantic-release@v9
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          git_committer_name: "github-actions"
+          git_committer_email: "actions@users.noreply.github.com"
