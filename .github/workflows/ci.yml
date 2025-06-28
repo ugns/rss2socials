@@ -108,6 +108,8 @@ jobs:
       name: pypi
     permissions:
       contents: write
+    outputs:
+      released: ${{ steps.release.outputs.released }}
     needs: [test, lint, coverage]
     if: github.ref_type == 'branch' && github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
@@ -124,9 +126,54 @@ jobs:
         run: pip-compile --extra dev --strip-extras --output-file=requirements.txt pyproject.toml
       - name: Install all dependencies (main + dev, pinned)
         run: pip install -r requirements.txt
-      - name: Semantic Release
+      - name: Action | Semantic Version Release
+        id: release
         uses: python-semantic-release/python-semantic-release@v10
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           git_committer_name: "github-actions"
           git_committer_email: "actions@users.noreply.github.com"
+      - name: Publish | Upload to GitHub Release Assets
+        uses: python-semantic-release/publish-action@v10
+        if: steps.release.outputs.released == 'true'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ steps.release.outputs.tag }}
+      - name: Upload | Distribution Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: distribution-artifacts
+          path: dist
+          if-no-files-found: error
+
+  deploy:
+    # 1. Separate out the deploy step from the publish step to run each step at
+    #    the least amount of token privilege
+    # 2. Also, deployments can fail, and its better to have a separate job if you need to retry
+    #    and it won't require reversing the release.
+    runs-on: ubuntu-latest
+    needs: release
+    if: needs.release.outputs.released == 'true'
+
+    permissions:
+      contents: read
+      id-token: write
+
+    # Dedicated environments with protections for publishing are strongly recommended.
+    # For more information, see: https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#deployment-protection-rules
+    environment:
+      name: pypi
+
+    steps:
+      - name: Setup | Download Build Artifacts
+        uses: actions/download-artifact@v4
+        id: artifact-download
+        with:
+          name: distribution-artifacts
+          path: dist/
+
+      # see https://docs.pypi.org/trusted-publishers/
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
