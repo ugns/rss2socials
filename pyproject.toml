@@ -3,11 +3,24 @@ name = "rss2socials"
 version = "1.0.2"
 description = "Modular Python CLI tool to automatically post new entries from an RSS or Atom feed to one or more social media platforms. Easily extensible, robust, and safe for automation and CI/CD workflows."
 authors = [
-    { name="Jeremy T. Bouse", email="Jeremy.Bouse@UnderGrid.net" }
+    { name="Jeremy T. Bouse", email="Jeremy.Bouse@UnderGrid.net" },
 ]
 readme = "README.md"
 license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Utilities",
+    "Environment :: Console",
+]
 dependencies = [
     "atproto==0.0.61",
     "feedparser==6.0.11",
@@ -17,7 +30,7 @@ dependencies = [
     "openai==1.93.0",
     "python-dotenv==1.1.1",
     "requests==2.32.4",
-    "trafilatura==2.0.0"
+    "trafilatura==2.0.0",
 ]
 
 [project.optional-dependencies]
@@ -29,7 +42,7 @@ dev = [
     "pytest",
     "python-semantic-release",
     "tox",
-    "twine"
+    "twine",
 ]
 
 [project.urls]
