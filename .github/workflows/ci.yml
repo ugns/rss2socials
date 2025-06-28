@@ -106,6 +106,8 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
+    permissions:
+      contents: write
     needs: [test, lint, coverage]
     if: github.ref_type == 'branch' && github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
