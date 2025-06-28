@@ -9,17 +9,19 @@ __all__ = [
 ]
 
 POST_INSTRUCTIONS_TEMPLATE = """
-Generate a {platform} post for my latest blog post.
+Generate a {platform} post for this article URL.
 
 The post must:
-- Be under {max_graphemes} graphemes
+- Be under {max_graphemes} graphemes/characters
+- Be written in the first person
+- Use a friendly, engaging tone
 - Contain no more than three hashtags
 - Entice the audience to click on the link without revealing all content
 
-Use an engaging, appropriate tone for {platform}.
+Use an engaging, appropriate tone for {platform} postings.
 
-Do not include the link in the post if needed to keep under graphemes limit;
-it will be added automatically as an external embed.
+Do not include the link itself in the post if needed to keep under graphemes limit;
+it will be added automatically as an external social card.
 
 If the linked content is inappropriate, offensive, broken, or otherwise unsuitable for public sharing,
 respond only with: 'Content not suitable for posting'.
