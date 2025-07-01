@@ -1,4 +1,3 @@
-import pytest
 from rss2socials.common import rss_utils
 import time
 
@@ -62,9 +61,20 @@ def test_save_seen_links(tmp_path):
     assert 'http://a.com' in content and 'http://b.com' in content
 
 
-def test_save_seen_links_handles_error(monkeypatch):
+def test_save_seen_links_handles_error(monkeypatch, caplog):
     def raise_ioerror(*a, **k):
         raise OSError('fail')
     monkeypatch.setattr('builtins.open', raise_ioerror)
-    with pytest.raises(OSError):
-        rss_utils.save_seen_links({'x'}, 'file.txt')
+    rss_utils.save_seen_links({'x'}, 'file.txt')
+    assert any('Error saving seen links' in r for r in caplog.text.splitlines())
+
+
+def test_load_seen_links_handles_error(monkeypatch, caplog):
+    def raise_ioerror(*a, **k):
+        raise OSError('fail')
+    monkeypatch.setattr('builtins.open', raise_ioerror)
+    # Create a dummy file so os.path.exists returns True
+    monkeypatch.setattr('os.path.exists', lambda f: True)
+    seen = rss_utils.load_seen_links('file.txt')
+    assert seen == set()
+    assert any('Error reading seen links' in r for r in caplog.text.splitlines())

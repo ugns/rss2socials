@@ -58,9 +58,17 @@ def load_seen_links(SEEN_FILE: str) -> Set[str]:
     Returns:
         A set of seen links.
     """
+    import logging
     if os.path.exists(SEEN_FILE):
-        with open(SEEN_FILE, "r") as f:
-            return set(line.strip() for line in f if line.strip())
+        try:
+            with open(SEEN_FILE, "r") as f:
+                seen = set(line.strip() for line in f if line.strip())
+            logging.debug(f"[rss_utils] Loaded {len(seen)} seen links from {SEEN_FILE}")
+            return seen
+        except Exception as e:
+            logging.error(f"[rss_utils] Error reading seen links from {SEEN_FILE}: {e}")
+            return set()
+    logging.debug(f"[rss_utils] Seen file {SEEN_FILE} does not exist; starting with empty set.")
     return set()
 
 
@@ -72,6 +80,11 @@ def save_seen_links(seen_links: Set[str], SEEN_FILE: str) -> None:
         seen_links: Set of links to save.
         SEEN_FILE: Path to the deduplication file.
     """
-    with open(SEEN_FILE, "w") as f:
-        for link in seen_links:
-            f.write(link + "\n")
+    import logging
+    try:
+        with open(SEEN_FILE, "w") as f:
+            for link in seen_links:
+                f.write(link + "\n")
+        logging.debug(f"[rss_utils] Saved {len(seen_links)} seen links to {SEEN_FILE}")
+    except Exception as e:
+        logging.error(f"[rss_utils] Error saving seen links to {SEEN_FILE}: {e}")
