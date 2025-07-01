@@ -2,6 +2,32 @@
 
 <!-- version list -->
 
+## v1.1.0 (2025-07-01)
+
+### Bug Fixes
+
+- Correct author email format and update project metadata in pyproject.toml
+  ([#9](https://github.com/ugns/rss2socials/pull/9),
+  [`92b867d`](https://github.com/ugns/rss2socials/commit/92b867dadabc27cc8e5694f20076164dae7e5779))
+
+- Update changelog to correct insertion marker ([#9](https://github.com/ugns/rss2socials/pull/9),
+  [`92b867d`](https://github.com/ugns/rss2socials/commit/92b867dadabc27cc8e5694f20076164dae7e5779))
+
+- Update post function to return a boolean indicating success
+  ([#9](https://github.com/ugns/rss2socials/pull/9),
+  [`92b867d`](https://github.com/ugns/rss2socials/commit/92b867dadabc27cc8e5694f20076164dae7e5779))
+
+- Update post instructions template for clarity and tone consistency
+  ([#9](https://github.com/ugns/rss2socials/pull/9),
+  [`92b867d`](https://github.com/ugns/rss2socials/commit/92b867dadabc27cc8e5694f20076164dae7e5779))
+
+### Features
+
+- Add logging for loading and saving seen links with error handling
+  ([#9](https://github.com/ugns/rss2socials/pull/9),
+  [`92b867d`](https://github.com/ugns/rss2socials/commit/92b867dadabc27cc8e5694f20076164dae7e5779))
+
+
 ## v0.1.0 (2025-06-28)
 
 ### Bug Fixes
