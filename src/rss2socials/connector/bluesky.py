@@ -155,7 +155,7 @@ def post(
     message: str,
     link: str,
     fetch_page_metadata: Callable[[str], Optional[dict]]
-) -> None:
+) -> bool:
     """
     Post a message to Bluesky, including a social card embed if available.
 
@@ -175,6 +175,7 @@ def post(
         _bluesky_client = BlueskyClient()
     try:
         _bluesky_client.post(message, link, fetch_page_metadata)
+        return True
     except Exception as e:
         logging.error(f"[Bluesky] Error posting to Bluesky: {e}")
         raise

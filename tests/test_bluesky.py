@@ -172,7 +172,8 @@ def test_post_success(mock_resolver, mock_cache, mock_client, mock_external, moc
         return {'og:title': 't'}
     # Reset singleton for isolation
     bluesky._bluesky_client = None
-    bluesky.post('msg #tag http://x', 'http://x', fetch_meta)
+    result = bluesky.post('msg #tag http://x', 'http://x', fetch_meta)
+    assert result is True
     assert client.login.called
     assert client.send_post.called
 
@@ -201,7 +202,8 @@ def test_post_success_no_embed(mock_resolver, mock_cache, mock_client, mock_exte
     # Patch BlueskyClient.create_bluesky_embed to return None
     with patch.object(bluesky.BlueskyClient, 'create_bluesky_embed', return_value=None):
         bluesky._bluesky_client = None
-        bluesky.post('msg #tag http://x', 'http://x', fetch_meta)
+        result = bluesky.post('msg #tag http://x', 'http://x', fetch_meta)
+    assert result is True
     assert client.login.called
     assert client.send_post.called
 
@@ -223,7 +225,8 @@ def test_post_resolve_did_none(mock_resolver, mock_cache, mock_client, mock_exte
     mock_external.return_value = MagicMock()
     mock_main.return_value = MagicMock(external=MagicMock(title='t'))
     bluesky._bluesky_client = None
-    bluesky.post('msg', 'link', lambda x: {})
+    result = bluesky.post('msg', 'link', lambda x: {})
+    assert result is True
     assert client.login.called
     assert client.send_post.called
 
