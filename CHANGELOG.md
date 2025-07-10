@@ -2,6 +2,15 @@
 
 <!-- version list -->
 
+## v1.1.5 (2025-07-10)
+
+### Bug Fixes
+
+- **package**: Update dependency openai to v1.95.0
+  ([#14](https://github.com/ugns/rss2socials/pull/14),
+  [`d46af78`](https://github.com/ugns/rss2socials/commit/d46af783efca147ff913f5d13ef943ed5ea18360))
+
+
 ## v1.1.4 (2025-07-10)
 
 ### Bug Fixes
