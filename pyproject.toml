@@ -1,6 +1,6 @@
 [project]
 name = "rss2socials"
-version = "1.1.14"
+version = "1.1.15"
 description = "Modular Python CLI tool to automatically post new entries from an RSS or Atom feed to one or more social media platforms. Easily extensible, robust, and safe for automation and CI/CD workflows."
 authors = [
     { name="Jeremy T. Bouse", email="Jeremy.Bouse@UnderGrid.net" },
