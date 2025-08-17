@@ -2,6 +2,15 @@
 
 <!-- version list -->
 
+## v1.1.18 (2025-08-17)
+
+### Bug Fixes
+
+- **package**: Update dependency atproto to v0.0.62
+  ([#31](https://github.com/ugns/rss2socials/pull/31),
+  [`4bf57a0`](https://github.com/ugns/rss2socials/commit/4bf57a02090f40a8456c85334f652399acffc8c7))
+
+
 ## v1.1.17 (2025-08-12)
 
 ### Bug Fixes
