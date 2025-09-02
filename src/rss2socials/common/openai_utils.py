@@ -64,7 +64,7 @@ def generate_summary(
     output: Optional[str] = None
     for attempt in range(1, max_retries + 1):
         response = client.responses.create(
-            model="gpt-4.1-mini",
+            model="gpt-5-mini",
             instructions=POST_INSTRUCTIONS_TEMPLATE.format(
                 platform=platform, max_graphemes=max_graphemes),
             tools=[{"type": "web_search_preview"}],
