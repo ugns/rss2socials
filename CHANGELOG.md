@@ -2,6 +2,15 @@
 
 <!-- version list -->
 
+## v1.1.21 (2025-09-02)
+
+### Bug Fixes
+
+- **openai**: Update model from gpt-4.1-mini to gpt-5-mini in generate_summary function
+  ([#39](https://github.com/ugns/rss2socials/pull/39),
+  [`e0183b1`](https://github.com/ugns/rss2socials/commit/e0183b1f902191e30f1f15442f461619944838d2))
+
+
 ## v1.1.20 (2025-08-18)
 
 ### Bug Fixes
