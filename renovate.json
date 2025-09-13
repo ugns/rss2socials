@@ -5,7 +5,7 @@
     ":semanticCommits",
     ":semanticCommitScope(package)"
   ],
-  "baseBranches": [
+  "baseBranchPatterns": [
     "main"
   ],
   "rebaseWhen": "conflicted",
@@ -17,25 +17,47 @@
         "dependencies",
         "optional-dependencies"
       ],
-      "matchManagers": ["pep621"],
+      "matchManagers": [
+        "pep621"
+      ],
       "automerge": true,
-      "schedule": ["every weekend after 4am"],
+      "schedule": [
+        "every weekend after 4am"
+      ],
       "allowedVersions": ">=3.9",
       "groupName": "all python dependencies",
-      "labels": ["dependencies", "python"]
+      "labels": [
+        "dependencies",
+        "python"
+      ]
     },
     {
-      "matchDepTypes": ["dev-dependencies"],
-      "matchManagers": ["pep621"],
+      "matchDepTypes": [
+        "dev-dependencies"
+      ],
+      "matchManagers": [
+        "pep621"
+      ],
       "automerge": false,
       "groupName": "all python dev dependencies",
-      "labels": ["dependencies", "python", "dev"]
+      "labels": [
+        "dependencies",
+        "python",
+        "dev"
+      ]
     },
     {
-      "matchManagers": ["github-actions"],
-      "matchUpdateTypes": ["major"],
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
       "automerge": true,
-      "labels": ["dependencies", "github-actions"]
+      "labels": [
+        "dependencies",
+        "github-actions"
+      ]
     }
   ]
 }
