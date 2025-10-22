@@ -22,7 +22,7 @@ classifiers = [
     "Environment :: Console",
 ]
 dependencies = [
-    "atproto==0.0.62",
+    "atproto==0.0.63",
     "feedparser==6.0.12",
     "grapheme==0.6.0",
     "lxml>=5.3.0,<6.0.0",
