@@ -2,6 +2,15 @@
 
 <!-- version list -->
 
+## v1.1.23 (2026-02-23)
+
+### Bug Fixes
+
+- **package**: Update dependency openai to v2.22.0
+  ([#93](https://github.com/ugns/rss2socials/pull/93),
+  [`8e23c4d`](https://github.com/ugns/rss2socials/commit/8e23c4d0406173ee9da05a352a574ede8129092e))
+
+
 ## v1.1.22 (2026-02-14)
 
 ### Bug Fixes
