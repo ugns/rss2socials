@@ -26,7 +26,7 @@ dependencies = [
     "feedparser==6.0.12",
     "grapheme==0.6.0",
     "lxml>=6.0.2,<6.1.0",
-    "lxml_html_clean==0.4.3",
+    "lxml_html_clean==0.4.4",
     "openai==2.24.0",
     "python-dotenv==1.2.1",
     "requests==2.32.5",
