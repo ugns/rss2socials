@@ -2,6 +2,15 @@
 
 <!-- version list -->
 
+## v1.1.26 (2026-02-27)
+
+### Bug Fixes
+
+- **package**: Update dependency lxml_html_clean to v0.4.4
+  ([#97](https://github.com/ugns/rss2socials/pull/97),
+  [`450489b`](https://github.com/ugns/rss2socials/commit/450489b1228584fc8bbbe63535d3c77827327510))
+
+
 ## v1.1.25 (2026-02-24)
 
 ### Bug Fixes
