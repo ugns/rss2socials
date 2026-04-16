@@ -27,7 +27,7 @@ dependencies = [
     "grapheme==0.6.0",
     "lxml>=6.0.2,<6.1.0",
     "lxml_html_clean==0.4.4",
-    "openai==2.31.0",
+    "openai==2.32.0",
     "python-dotenv==1.2.2",
     "requests==2.33.1",
     "trafilatura==2.0.0",
