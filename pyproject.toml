@@ -29,7 +29,7 @@ dependencies = [
     "lxml_html_clean==0.4.4",
     "openai==2.36.0",
     "python-dotenv==1.2.2",
-    "requests==2.34.1",
+    "requests==2.34.2",
     "trafilatura==2.0.0",
 ]
 
