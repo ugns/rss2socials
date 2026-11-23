@@ -30,7 +30,7 @@ dependencies = [
     "openai==3.57.0",
     "python-dotenv==1.2.4",
     "requests==2.34.2",
-    "trafilatura==2.3.1",
+    "trafilatura==2.4.0",
 ]
 
 [project.optional-dependencies]
